@@ -41,9 +41,10 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-
+        window.location.assign("home");
       },
       error: (err: { error: string; }) => {
+        console.log(this.errorMessage)
         this.errorMessage = JSON.parse(err.error).message;
         this.isLoginFailed = true;
       }

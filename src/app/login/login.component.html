@@ -59,9 +59,10 @@
             Login failed: {{ errorMessage }}
           </div>
         </div>
-
       </form>
-
+      <div class="alert alert-success" *ngIf="isLoginFailed">
+        Wrong Username or Password!
+      </div>
 
   </div>
 </div>

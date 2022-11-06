@@ -23,13 +23,13 @@ export class RegisterComponent{
     const { username, email, password, name } = this.form;
     this.authService.register(username, email, password, name).subscribe({
       next: () => {
-
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
       error: err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
+
       }
     });
   }
