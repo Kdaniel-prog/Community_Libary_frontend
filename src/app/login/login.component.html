@@ -56,13 +56,9 @@
             class="alert alert-danger"
             role="alert"
             *ngIf="f.submitted && isLoginFailed">
-            Login failed: {{ errorMessage }}
+            Login failed: Wrong Username or Password!
           </div>
         </div>
       </form>
-      <div class="alert alert-success" *ngIf="isLoginFailed">
-        Wrong Username or Password!
-      </div>
-
   </div>
 </div>

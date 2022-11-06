@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const { username, password } = this.form;
-    console.log(this.form);
     this.authService.login(username, password).subscribe({
       next: (data: { accessToken: any; } | null) => {
         if(data === null){
@@ -43,9 +42,7 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         window.location.assign("home");
       },
-      error: (err: { error: string; }) => {
-        console.log(this.errorMessage)
-        this.errorMessage = JSON.parse(err.error).message;
+      error: () => {
         this.isLoginFailed = true;
       }
     });
