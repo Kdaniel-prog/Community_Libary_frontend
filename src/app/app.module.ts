@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TabsComponent  } from '../tabs/tabs.component'
 import { TabComponent  } from '../tabs/tab.component'
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,8 @@ import { TabComponent  } from '../tabs/tab.component'
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

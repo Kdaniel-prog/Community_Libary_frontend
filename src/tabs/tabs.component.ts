@@ -58,10 +58,7 @@ import { TabComponent  } from './tab.component';
     }
 
     ::ng-deep .pane {
-      position: relative;
-      z-index: 2;
-      padding: 2em 1em;
-      margin: 0 0.25em;
+
       border: 1px solid #CCC;
       background: #FFF;
       border-radius: 0;

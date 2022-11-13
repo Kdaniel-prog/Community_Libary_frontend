@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <body  class="body col-12 col-xxl-6 justify-content-center">
+  <body  class="body col-12 col-xxl-8 justify-content-center">
     <tabs>
       <tab [name]="'Modyfi Profile'">
         <body  class="body">
@@ -7,11 +7,36 @@
         </body>
       </tab>
       <tab name="My Books">
-        <button class="add btn btn-primary" (click)="open(contentNew)"> <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-        </svg> New Book
-        </button>
+
         <body class="body" >
+          <div>
+            <button class="add btn btn-primary" (click)="open(contentNew)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+            </svg> New Book
+            </button>
+            <div class="books">
+              <table  class="table table-dark" >
+                <thead>
+                <tr>
+                  <th scope="col"><h5><b>Author</b></h5></th>
+                  <th scope="col"><h5><b>Title</b></h5></th>
+                  <th scope="col"><h5><b>Actions</b></h5></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let book of books">
+                  <td><span>{{book.author}}</span></td>
+                  <td><span>{{book.title}}</span></td>
+                  <td>
+                    <a class="btn btn-sm btn-warning">Edit</a>
+                    <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, book)">Delete</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
         </body>
 

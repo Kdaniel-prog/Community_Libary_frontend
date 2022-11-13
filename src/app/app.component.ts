@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
+import { faHouseUser, faDoorOpen, faUser} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,9 @@ import { TokenStorageService } from './_services/token-storage.service';
 })
 export class AppComponent {
   title = 'Community_Libary_frontend';
+  fahouse = faHouseUser;
+  fauser = faUser;
+  fadooropen = faDoorOpen;
   isLoggedIn = false;
   constructor(private tokenStorageService: TokenStorageService) {
 

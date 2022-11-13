@@ -9,24 +9,26 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/home" routerLink="home"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-house-fill" viewBox="0 0 16 16">
-                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
-                <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
-                </svg>
+              <a class="nav-link" href="/home" routerLink="home">
+                <fa-icon [icon]="fahouse" size="2x"></fa-icon>
               </a>
             </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" >Action</a>
-                <a class="dropdown-item" >Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item">Something else here</a>
+            <div class="row">
+              <div class="col">
+                <div ngbDropdown class="d-inline-block">
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                    Toggle dropdown
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem>Action - 1</button>
+                    <button ngbDropdownItem>Another Action</button>
+                    <button ngbDropdownItem>Something else is here</button>
+                  </div>
+                </div>
               </div>
-            </li>
+
+            </div>
 
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -35,19 +37,15 @@
           </form>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </div>
+        <ul class="navbar-nav mr-auto">
+          <button type="button" class="btn bi-door-open-fill" (click)="logout()">
+            <fa-icon [icon]="fadooropen" size="2x"></fa-icon>
+          </button>
+            <a class="nav-link" href="/profile" routerLink="profile" >
+              <fa-icon [icon]="fauser" size="2x"></fa-icon>
+            </a>
+        </ul>
 
-        <button type="button" class="btn bi-door-open-fill" (click)="logout()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
-            <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
-          </svg>
-        </button>
-
-        <a class="navbar-brand" href="/profile" routerLink="profile" >
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-          </svg>
-        </a>
       </nav>
       </div>
     <router-outlet></router-outlet>
