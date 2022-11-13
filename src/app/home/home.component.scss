@@ -1,28 +1,10 @@
-.alert{
-  padding-top: 4%;
-}
-.button_div{
-  margin-top: 10%;
-}
-.navbar{
-  background-color: rgb(202, 198, 243);
-  border-radius: 10px;
-  margin-top: 0.5%;
-}
-.textnavbar{
-  text-shadow: 2px 2px rgba(229, 228, 255, 0.034);
-}
-.navbar-brand{
-  padding-left: 2%;
-}
 .body{
   margin-top: 5%;
   text-shadow: 2px 2px rgba(229, 228, 255, 0.034);
   border-radius: 10px;
+  background-color: rgb(253, 251, 251);
 }
-.door{
-  margin-left: 2%;
-}
+
 @keyframes go-left-right {        /* give it a name: "go-left-right" */
     from { right: -2000px; }             /* animate from left: 0px */
     to { right: calc(0px); } /* animate to left: 100%-50px */
