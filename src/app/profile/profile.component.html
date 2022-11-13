@@ -1,23 +1,25 @@
 <div class="row justify-content-center">
-  <body  class="setup-body col-12 col-xxl-3">
-    <div class="row">
-
-        <div class="list-group" id="list-tab" role="tablist">
-          <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" role="tab" aria-controls="modify_profile">Modify Profile</a>
-          <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"  role="tab" aria-controls="myBooks">My Books</a>
-      </div>
-    </div>
-  </body>
   <body  class="body col-12 col-xxl-6 justify-content-center">
+    <tabs>
+      <tab [name]="'Modyfi Profile'">
+        <body  class="body">
+          Profile
+        </body>
+      </tab>
+      <tab name="My Books">
+        <button class="add btn btn-primary" (click)="open(contentNew)"> <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+        </svg> New Book
+        </button>
+        <body class="body" >
 
-    <button class="add btn btn-primary" (click)="open(contentNew)"> <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-    </svg>Book</button>
-    <b>asd</b>
+        </body>
+
+      </tab>
+    </tabs>
+
   </body>
-
 </div>
-
 
 
 

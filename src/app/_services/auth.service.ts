@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   add_book(Title: string, Author: string, OwnerID: number): Observable<any> {
-    return this.http.post(AUTH_API + '/book/addBook', {
+    return this.http.post(API + '/book/addBook', {
       Title,
       Author,
       OwnerID

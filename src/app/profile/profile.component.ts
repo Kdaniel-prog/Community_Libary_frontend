@@ -83,7 +83,7 @@ export class ProfileComponent implements OnInit {
     const {Title, Author} = this.form;
     console.log(this.form);
     this.authService.add_book(Title, Author, this.OwnerID).subscribe({
-      next: () => {
+      next: data => {
         this.isSuccessful = true;
         window.location.reload();
       },
@@ -151,7 +151,6 @@ export class ProfileComponent implements OnInit {
         this.modalService.dismissAll();
       });
   }
-
 
 }
 

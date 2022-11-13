@@ -10,6 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TabsComponent  } from '../tabs/tabs.component'
+import { TabComponent  } from '../tabs/tab.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,
