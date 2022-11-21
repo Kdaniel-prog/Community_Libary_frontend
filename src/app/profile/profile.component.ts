@@ -8,6 +8,18 @@ import { TokenStorageService } from '../_services/token-storage.service';
 import { faPlusCircle, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
 export {User};
 
+
+export class UserData {
+  constructor(
+    public id: number,
+    public username: string,
+    public email: string,
+    public fullname: string,
+    public like: number,
+    public dislike: number
+  ){
+  }
+}
 export class Book {
   constructor(
   public id: number | undefined,
@@ -50,6 +62,7 @@ export class BorrowedBook {
 export class ProfileComponent implements OnInit {
   books: Book[] = [];
   reviews: Reviews[] = [];
+  userData = {} as UserData;
   borrowedBooks: BorrowedBook[] = [];
   editForm = new FormGroup({
     id: new FormControl(),
@@ -91,6 +104,7 @@ export class ProfileComponent implements OnInit {
     this.OwnerID = this.user_data?.id;
     this.getBooks();
     this.getBorrowedBooks();
+    this.userInfo();
     this.editForm = this.fb.group({
       id: [''],
       Author: [''],
@@ -111,8 +125,14 @@ export class ProfileComponent implements OnInit {
   getBorrowedBooks() {
     this.httpClient.get<BorrowedBook[]>('https://localhost:7165/api/borrowed/Books?borrowerID='+this.OwnerID).subscribe(
       response => {
-        console.log(response)
         this.borrowedBooks = response
+      });
+  }
+  userInfo(){
+    this.httpClient.get<any>('https://localhost:7165/api/userReviews/oneUser?id='+this.OwnerID).subscribe(
+      response => {
+        console.log(response)
+        this.userData = response
       });
   }
 

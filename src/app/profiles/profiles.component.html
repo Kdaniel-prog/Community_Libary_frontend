@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+  <body  class="body col-12 col-xxl-8 justify-content-center">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col"><h5><b>Username</b></h5></th>
+        <th scope="col"><h5><b>Fullname</b></h5></th>
+        <th scope="col"><h5><b>Like</b></h5></th>
+        <th scope="col"><h5><b>Dislike</b></h5></th>
+        <th scope="col"><h5><b>Actions</b></h5></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of userReviews">
+      <td><span>{{user.username}}</span></td>
+      <td><span>{{user.fullName}}</span></td>
+      <td><span>{{user.like}}</span></td>
+      <td><span>{{user.dislike}}</span></td>
+      <td>
+        <button type="button" class="btn" (click)="sendReview(user.userId, true)" >
+          <fa-icon [icon]="faThumbsUp" size="2x"></fa-icon>
+        </button>
+        <button type="button" class="btn"(click)="sendReview(user.userId, false)" >
+          <fa-icon [icon]="faThumbsDown" size="2x"></fa-icon>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</body>
+</div>

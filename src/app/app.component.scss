@@ -1,4 +1,5 @@
 
+
 .image{
   height: 100vh;
   background-size:cover;
@@ -10,3 +11,23 @@
 .btn{
   margin-right: 0.5%;
 }
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(105, 64, 143);
+}
+.navbar button:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(105, 64, 143);
+}
+.nav-item{
+  display: flex;
+}
+

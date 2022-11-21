@@ -1,24 +1,34 @@
 <div class="image">
   <div class="row justify-content-center">
     <div  class="setup-body col-12 col-xxl-9">
-      <nav class="col navbar navbar-expand-lg navbar-light bg-light" *ngIf="isLoggedIn">
-        <div class="col collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isLoggedIn">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div [ngbCollapse]="isNavbarCollapsed" class="col collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            <li class="nav-item">
               <a class="col nav-link" href="/home" routerLink="home">
-                <fa-icon [icon]="fahouse" size="2x"></fa-icon>
+                <b>Home</b>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="col nav-link" href="/profiles" routerLink="profiles">
+                <b>Profiles</b>
               </a>
             </li>
           </ul>
         </div>
-        <button type="button" class="btn bi-door-open-fill" (click)="logout()">
-          <fa-icon [icon]="fadooropen" size="2x"></fa-icon>
-        </button>
-        <ul class="navbar-nav mr-auto">
-          <a class="nav-link" href="/profile" routerLink="profile" >
-            <fa-icon [icon]="fauser" size="2x"></fa-icon>
+        <li class="nav-item">
+          <a type="button" class="btn bi-door-open-fill" (click)="logout()">
+            <b>Logout</b>
           </a>
-        </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/profile" routerLink="profile" >
+              <b>My profile</b>
+            </a>
+        </li>
       </nav>
       </div>
     <router-outlet></router-outlet>

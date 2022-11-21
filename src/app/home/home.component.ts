@@ -58,12 +58,8 @@ export class HomeComponent implements OnInit {
   getBooks(){
     this.httpClient.get<Book[]>('https://localhost:7165/api/book/allbook?userid='+ this.user_data.id).subscribe(
       response => {
-        response.map(
-          res =>
-          console.log(res.author),
-        );
         this.books = response
-        console.log(this.books );
+        console.log(this.books);
       });
   }
 

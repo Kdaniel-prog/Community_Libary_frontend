@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { TabsComponent  } from '../tabs/tabs.component'
 import { TabComponent  } from '../tabs/tab.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProfilesComponent } from './profiles/profiles.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     ProfileComponent,
     TabsComponent,
-    TabComponent
+    TabComponent,
+    ProfilesComponent
   ],
   imports: [
     BrowserModule,

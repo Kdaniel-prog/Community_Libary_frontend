@@ -3,11 +3,11 @@
     <tabs>
       <tab [name]="'Profile'">
         <div class="cardprofil">
-            <h1>{{user_data.fullName}}</h1>
-            <p class="titleprofil">{{user_data.username}}</p>
-            <p>{{user_data.email}}</p>
-            <p> Users like: </p>
-            <p> Users dislike: </p>
+            <h1>Fullname: {{userData.fullname}}</h1>
+            <p class="titleprofil">Username: {{userData.username}}</p>
+            <p>Email: {{userData.email}}</p>
+            <p> User like:{{userData.like}} </p>
+            <p> User dislike: {{userData.dislike}} </p>
           </div>
       </tab>
       <tab name="My Books">
@@ -65,9 +65,9 @@
               <td><span>{{timeConverter(book.borrowedTime)}}</span></td>
               <td><span>{{book.bookReview}}</span></td>
               <td>
-                <button class="btn btn-sm btn-primary" (click)="openBookReview(contentNewReview, book)">Write book review</button>
+                <button *ngIf="book.bookReview == null" class="btn btn-sm btn-primary" (click)="openBookReview(contentNewReview, book)">Write book review</button>
                 <button class="btn btn-sm btn-info" (click)="openEditBookReview(contentEditReview, book)">Edit book review</button>
-                <button class="btn btn-sm btn-danger" (click)="DeleteBookReview(book.bookReviewID)">Delete book review</button>
+                <button *ngIf="book.bookReview != null"class="btn btn-sm btn-danger" (click)="DeleteBookReview(book.bookReviewID)">Delete book review</button>
                 <button class="btn btn-sm btn-danger" (click)="returnBorrowedBook(book.borrowedReviewID)" >Give Back</button>
               </td>
             </tr>
@@ -82,17 +82,18 @@
 <ng-template #contentComments let-modal>
   <div class="modal-content" id="Comments">
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Edit </h4>
+      <h4 class="modal-title" id="modal-basic-title">Reviews </h4>
       <button type="button" class="btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <div class="comment" *ngFor="let review of reviews">
-        <b>{{review.username}} </b>
+        <b>Username: {{review.username}} </b>
         <div>
-          <p>{{review.review}}</p>
+          <p>Review: {{review.review}}</p>
         </div>
+        <HR>
       </div>
     </div>
   </div>

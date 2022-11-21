@@ -10,6 +10,7 @@ import { faHouseUser, faDoorOpen, faUser} from '@fortawesome/free-solid-svg-icon
 export class AppComponent {
   title = 'Community_Libary_frontend';
   fahouse = faHouseUser;
+  isNavbarCollapsed = true;
   fauser = faUser;
   fadooropen = faDoorOpen;
   isLoggedIn = false;
