@@ -1,5 +1,5 @@
 
-import { AfterContentInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, QueryList } from '@angular/core';
 import { TabComponent  } from './tab.component';
 
 @Component({
@@ -48,6 +48,7 @@ import { TabComponent  } from './tab.component';
       border-bottom: 0;
       padding: 0 10px;
       color: #000;
+      font-weight: bold;
       text-decoration: none;
     }
 
@@ -58,7 +59,6 @@ import { TabComponent  } from './tab.component';
     }
 
     ::ng-deep .pane {
-
       border: 1px solid #CCC;
       background: #FFF;
       border-radius: 0;

@@ -14,10 +14,40 @@ const httpOptions = {
 })
 export class AuthService {
 
+
+
+
   constructor(private http: HttpClient, private readonly tokenService: TokenStorageService) { }
 
   get isLoggedIn(){
     return !!this.tokenService.getToken();
+  }
+
+  edit_review(value: Partial<{ bookID: any; reviewerID: any; bookReview: any; }>)  {
+    let bookID = value.bookID;
+    let reviewerID = value.reviewerID;
+    let bookReview = value.bookReview;
+    return this.http.put(API + '/bookreview/editreview', {
+      bookID,
+      reviewerID,
+      bookReview
+    }, httpOptions);
+  }
+
+
+  sendBookReview(bookID: any, reviewerID: any, bookReview: any): Observable<any> {
+    return this.http.post(API + '/bookreview/addreview', {
+      bookID,
+      reviewerID,
+      bookReview
+    }, httpOptions);
+  }
+
+  add_borrowed(bookID: any, borrowerID: number): Observable<any> {
+    return this.http.post(API + '/borrowed/addBorrowed', {
+      bookID,
+      borrowerID
+    }, httpOptions);
   }
 
   add_book(Title: string, Author: string, OwnerID: number): Observable<any> {

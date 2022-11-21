@@ -1,51 +1,24 @@
 <div class="image">
   <div class="row justify-content-center">
     <div  class="setup-body col-12 col-xxl-9">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isLoggedIn">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <nav class="col navbar navbar-expand-lg navbar-light bg-light" *ngIf="isLoggedIn">
+        <div class="col collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/home" routerLink="home">
+              <a class="col nav-link" href="/home" routerLink="home">
                 <fa-icon [icon]="fahouse" size="2x"></fa-icon>
               </a>
             </li>
-
-            <div class="row">
-              <div class="col">
-                <div ngbDropdown class="d-inline-block">
-                  <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-                    Toggle dropdown
-                  </button>
-                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button ngbDropdownItem>Action - 1</button>
-                    <button ngbDropdownItem>Another Action</button>
-                    <button ngbDropdownItem>Something else is here</button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-
-          </form>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </div>
+        <button type="button" class="btn bi-door-open-fill" (click)="logout()">
+          <fa-icon [icon]="fadooropen" size="2x"></fa-icon>
+        </button>
         <ul class="navbar-nav mr-auto">
-          <button type="button" class="btn bi-door-open-fill" (click)="logout()">
-            <fa-icon [icon]="fadooropen" size="2x"></fa-icon>
-          </button>
-            <a class="nav-link" href="/profile" routerLink="profile" >
-              <fa-icon [icon]="fauser" size="2x"></fa-icon>
-            </a>
+          <a class="nav-link" href="/profile" routerLink="profile" >
+            <fa-icon [icon]="fauser" size="2x"></fa-icon>
+          </a>
         </ul>
-
       </nav>
       </div>
     <router-outlet></router-outlet>

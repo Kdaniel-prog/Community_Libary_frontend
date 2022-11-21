@@ -1,19 +1,21 @@
 <div class="row justify-content-center">
   <body  class="body col-12 col-xxl-8 justify-content-center">
     <tabs>
-      <tab [name]="'Modyfi Profile'">
-        <body  class="body">
-          Profile
-        </body>
+      <tab [name]="'Profile'">
+        <div class="cardprofil">
+            <h1>{{user_data.fullName}}</h1>
+            <p class="titleprofil">{{user_data.username}}</p>
+            <p>{{user_data.email}}</p>
+            <p> Users like: </p>
+            <p> Users dislike: </p>
+          </div>
       </tab>
       <tab name="My Books">
-
         <body class="body" >
           <div>
             <button class="add btn btn-primary" (click)="open(contentNew)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-            </svg> New Book
+              <fa-icon [icon]="faplus" size="1x"></fa-icon>
+              Add book
             </button>
             <div class="books">
               <table  class="table table-dark" >
@@ -21,6 +23,7 @@
                 <tr>
                   <th scope="col"><h5><b>Author</b></h5></th>
                   <th scope="col"><h5><b>Title</b></h5></th>
+                  <th scope="col"><h5><b>Borrower Username</b></h5></th>
                   <th scope="col"><h5><b>Actions</b></h5></th>
                 </tr>
                 </thead>
@@ -28,42 +31,146 @@
                 <tr *ngFor="let book of books">
                   <td><span>{{book.author}}</span></td>
                   <td><span>{{book.title}}</span></td>
+                  <td><span>{{book.borrowerUsername}}</span></td>
                   <td>
-                    <a class="btn btn-sm btn-warning">Edit</a>
                     <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, book)">Delete</button>
+                    <button class="btn btn-sm btn-primary" (click)="openEdit(contentEdit, book)">Edit</button>
+                    <button class="btn btn-sm btn-primary" (click)="open(contentComments)" (click)="getBookReviews(book.id)">Read reviews</button>
                   </td>
                 </tr>
                 </tbody>
               </table>
             </div>
           </div>
-
         </body>
-
+      </tab>
+      <tab [name]="'Borrowed Books'">
+        <div class="books">
+          <table  class="table table-dark">
+            <thead>
+            <tr>
+              <th scope="col"><h5><b>Author</b></h5></th>
+              <th scope="col"><h5><b>Title</b></h5></th>
+              <th scope="col"><h5><b>Owner Username</b></h5></th>
+              <th scope="col"><h5><b>Borrowed Time</b></h5></th>
+              <th scope="col"><h5><b>Book Review</b></h5></th>
+              <th scope="col"><h5><b>Actions</b></h5></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let book of borrowedBooks">
+              <td><span>{{book.author}}</span></td>
+              <td><span>{{book.title}}</span></td>
+              <td><span>{{book.ownerUsername}}</span></td>
+              <td><span>{{timeConverter(book.borrowedTime)}}</span></td>
+              <td><span>{{book.bookReview}}</span></td>
+              <td>
+                <button class="btn btn-sm btn-primary" (click)="openBookReview(contentNewReview, book)">Write book review</button>
+                <button class="btn btn-sm btn-info" (click)="openEditBookReview(contentEditReview, book)">Edit book review</button>
+                <button class="btn btn-sm btn-danger" (click)="DeleteBookReview(book.bookReviewID)">Delete book review</button>
+                <button class="btn btn-sm btn-danger" (click)="returnBorrowedBook(book.borrowedReviewID)" >Give Back</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </tab>
     </tabs>
-
   </body>
 </div>
 
+<ng-template #contentComments let-modal>
+  <div class="modal-content" id="Comments">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit </h4>
+      <button type="button" class="btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="comment" *ngFor="let review of reviews">
+        <b>{{review.username}} </b>
+        <div>
+          <p>{{review.review}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
 
+<ng-template #contentEdit let-modal>
+  <div class="modal-content" id="Editmsg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit </h4>
+      <button type="button" class="btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="editForm" novalidate>
+        <div class="form-group">
+          <label for="Author">Author</label>
+          <div class="input-group">
+            <input formControlName="Author" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="Title">Title</label>
+            <div class="input-group">
+              <input formControlName="Title" class="form-control">
+            </div>
+          </div>
+        </div>
+        <button data-dismiss="modal" class="btn btn-info" (click)="onEdit()">Save</button>
+      </form>
+    </div>
+  </div>
+</ng-template>
 
 <ng-template #contentDelete let-modal>
   <div class="modal-content">
     <div class="modal-header">
       <h4 class="modal-title">Confirm Delete</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <button type="button" class="btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <h2>Are you sure you want to delete this record?</h2>
-      <div class="border text-center">
         <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button>
-      </div>
+
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #contentNewReview let-modal>
+  <div class="modal-content" id="add_new_review">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Book</h4>
+      <button type="button" class="btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #f="ngForm" (ngSubmit)="sendBookReview()" novalidate>
+        <div class="form-group">
+          <div class="form-group">
+            <label for="Review">Review</label>
+            <textarea
+            class="form-control"
+            name="text"
+            type="text"
+            id="text"
+            rows="3"
+            [(ngModel)]="reviewForm.bookReview"
+            #text="ngModel"
+            ></textarea>
+          </div>
+        </div>
+        <button data-dismiss="modal" class="btn btn-info">Submit</button>
+      </form>
     </div>
   </div>
 </ng-template>
@@ -72,7 +179,7 @@
   <div class="modal-content" id="add_new">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Add Book</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <button type="button" class="btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -109,25 +216,24 @@
   </div>
 </ng-template>
 
-<ng-template #contentEditmsg let-modal>
+<ng-template #contentEditReview let-modal>
   <div class="modal-content" id="Editmsg">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Edit </h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <button type="button" class="btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="editForm" novalidate>
+      <form [formGroup]="editReview" novalidate>
         <div class="form-group">
-          <label for="text">Text</label>
+          <label for="bookReview">Book Review</label>
           <div class="input-group">
-            <textarea id="text" formControlName="text" class="form-control" name="text" type="text" rows="3" ></textarea>
+            <textarea  id="text" formControlName="bookReview" class="form-control" name="text" type="text" rows="3" ></textarea>
           </div>
         </div>
-        <button data-dismiss="modal" class="btn btn-info" (click)="onEdit()">Save</button>
+        <button data-dismiss="modal" class="btn btn-info" (click)="onEditBookReview()">Save</button>
       </form>
     </div>
   </div>
 </ng-template>
-

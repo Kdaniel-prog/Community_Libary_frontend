@@ -1,6 +1,50 @@
-<<div class="row justify-content-center">
-  <body  class="body col-12 col-xxl-9 justify-content-center">
-    <b>sadasds</b>
+<div class="row justify-content-center">
+  <body  class="body col-12 col-xxl-8 justify-content-center">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col"><h5><b>Author</b></h5></th>
+        <th scope="col"><h5><b>Title</b></h5></th>
+        <th scope="col"><h5><b>Owner Username</b></h5></th>
+        <th scope="col"><h5><b>Borrower Username</b></h5></th>
+        <th scope="col"><h5><b>Book Reviews</b></h5></th>
+        <th scope="col"><h5><b>Actions</b></h5></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let book of books">
+        <td [ngClass]="book.borrowed ? 'red': 'green'"><span>{{book.author}}</span></td>
+        <td [ngClass]="book.borrowed ? 'red': 'green'"><span>{{book.title}}</span></td>
+        <td [ngClass]="book.borrowed ? 'red': 'green'">
+          <span class="icon">{{book.ownerUsername}}</span>
+        </td>
+        <td [ngClass]="book.borrowed ? 'red': 'green'"><span>{{book.borrowerUsername}}</span></td>
+        <td [ngClass]="book.borrowed ? 'red': 'green'"><span></span></td>
+        <td [ngClass]="book.borrowed ? 'red': 'green'">
+          <button [disabled]="book.borrowed" class="btn btn-sm btn-primary" (click)="borrow(book.id)">Borrow</button>
+          <button class="btn btn-sm btn-primary" (click)="open(contentComments)" (click)="getBookReviews(book.id)">Read reviews</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </body>
 </div>
 
+<ng-template #contentComments let-modal>
+  <div class="modal-content" id="Comments">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit </h4>
+      <button type="button" class="btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="comment" *ngFor="let review of reviews">
+        <b>{{review.username}} </b>
+        <div>
+          <p>{{review.review}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
