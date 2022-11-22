@@ -12,7 +12,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let book of books">
+      <tr *ngFor="let book of books| paginate:{id: 'pagination1', itemsPerPage: bookTableSize, currentPage: bookPage, totalItems: bookCount}; let i = index">
         <td [ngClass]="book.borrowed ? 'red': 'green'"><span>{{book.author}}</span></td>
         <td [ngClass]="book.borrowed ? 'red': 'green'"><span>{{book.title}}</span></td>
         <td [ngClass]="book.borrowed ? 'red': 'green'">
@@ -26,7 +26,12 @@
         </td>
       </tr>
       </tbody>
+      <div>
+        <pagination-controls id="pagination1" previousLabel="Prev" nextLabel="Next"  (pageChange)="onBookTableDataChange($event)">
+        </pagination-controls>
+      </div>
     </table>
+
   </body>
 </div>
 
@@ -39,12 +44,19 @@
       </button>
     </div>
     <div class="modal-body">
-      <div class="comment" *ngFor="let review of reviews">
-        <b>Username: {{review.username}} </b>
+      <div class="comment" *ngFor="let review of reviews| paginate:{id: 'pagination2', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
         <div>
-          <p>Review: {{review.review}}</p>
+          <b>Username:</b><p>{{review.username}} </p>
+        </div>
+
+        <div>
+          <b>Review: </b><i>{{review.review}}</i>
         </div>
         <HR>
+      </div>
+      <div>
+        <pagination-controls id="pagination2" previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
       </div>
     </div>
   </div>

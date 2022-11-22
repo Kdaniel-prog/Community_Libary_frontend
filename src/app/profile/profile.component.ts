@@ -22,7 +22,7 @@ export class UserData {
 }
 export class Book {
   constructor(
-  public id: number | undefined,
+  public id: number,
   public title: String,
   public author: String,
   public ownerID: number,
@@ -60,6 +60,20 @@ export class BorrowedBook {
 
 
 export class ProfileComponent implements OnInit {
+  mybookPage: number = 1;
+  mybookCount: number = 0;
+  mybookTableSize: number = 5;
+
+  borrowBooksPage: number = 1;
+  borrowBooksCount: number = 0;
+  borrowBooksTableSize: number = 5;
+
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 3;
+  bookid: number = 0;
+  tableSizes: any = [5, 10, 15, 20];
+
   books: Book[] = [];
   reviews: Reviews[] = [];
   userData = {} as UserData;
@@ -116,17 +130,28 @@ export class ProfileComponent implements OnInit {
       bookReview: [''],
     } );
   }
+
   getBooks() {
-    this.httpClient.get<Book[]>('https://localhost:7165/api/book/mybooks?id='+this.OwnerID).subscribe(
+    this.httpClient.get<Book[]>('https://localhost:7165/api/book/mybooks?id='+this.OwnerID+'&page='+this.mybookPage+'&size='+this.mybookTableSize).subscribe(
       response => {
         this.books = response
+        console.log(this.books)
       });
+      this.httpClient.get<number>('https://localhost:7165/api/book/mybooksSize?id='+this.OwnerID).subscribe(
+        response => {
+          this.mybookCount = response
+        });
   }
+
   getBorrowedBooks() {
-    this.httpClient.get<BorrowedBook[]>('https://localhost:7165/api/borrowed/Books?borrowerID='+this.OwnerID).subscribe(
+    this.httpClient.get<BorrowedBook[]>('https://localhost:7165/api/borrowed/Books?borrowerID='+this.OwnerID+'&page='+this.borrowBooksPage+'&size='+this.borrowBooksTableSize).subscribe(
       response => {
         this.borrowedBooks = response
       });
+      this.httpClient.get<number>('https://localhost:7165/api/borrowed/BooksSize?borrowerID='+this.OwnerID).subscribe(
+        response => {
+          this.borrowBooksCount = response
+        });
   }
   userInfo(){
     this.httpClient.get<any>('https://localhost:7165/api/userReviews/oneUser?id='+this.OwnerID).subscribe(
@@ -269,12 +294,29 @@ export class ProfileComponent implements OnInit {
           this.modalService.dismissAll();
         });
     }
-    getBookReviews(bookid: number | undefined) {
-      this.httpClient.get<Reviews[]>('https://localhost:7165/api/bookreview/allreview?bookid='+bookid).subscribe(
+    getBookReviews(bookid: number) {
+      this.bookid = bookid;
+      this.httpClient.get<Reviews[]>('https://localhost:7165/api/bookreview/allreview?bookid='+bookid+'&page='+this.page+'&size='+this.tableSize).subscribe(
         response => {
           console.log(response)
           this.reviews = response
         });
+        this.httpClient.get<number>('https://localhost:7165/api/bookreview/getSize?bookid='+bookid).subscribe(
+          response => {
+            this.count = response
+          });
+    }
+    onTableDataChange(event: any){
+      this.page = event;
+      this.getBookReviews(this.bookid)
+    }
+    myBooksonTableDataChange(event2: any){
+      this.mybookPage = event2;
+      this.getBooks()
+    }
+    onBorrowBooksTableDataChange(event3: any){
+      this.borrowBooksPage = event3;
+      this.getBorrowedBooks()
     }
 }
 

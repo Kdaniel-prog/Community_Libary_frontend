@@ -31,6 +31,11 @@ const httpOptions = {
 })
 
 export class ProfilesComponent implements OnInit {
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 5;
+  tableSizes: any = [5, 10, 15, 20];
+
   userReviews: UserReview[] = [];
   user_data!: User;
   faThumbsUp = faThumbsUp;
@@ -49,11 +54,15 @@ export class ProfilesComponent implements OnInit {
   }
 
   getAllUsers(){
-    this.httpClient.get<UserReview[]>('https://localhost:7165/api/userReviews/allUsers?id='+this.user_data.id).subscribe(
+    this.httpClient.get<UserReview[]>('https://localhost:7165/api/userReviews/allUsers?id='+this.user_data.id+'&page='+this.page+'&size='+this.tableSize).subscribe(
       response => {
         this.userReviews = response
         console.log(this.userReviews );
       });
+      this.httpClient.get<number>('https://localhost:7165/api/userReviews/allUsersSize?id='+this.user_data.id).subscribe(
+        response => {
+          this.count = response
+        });
   }
   sendReview(ReviewedID: number, isLiked: boolean){
     let ReviewerID = this.user_data.id;
@@ -67,5 +76,9 @@ export class ProfilesComponent implements OnInit {
         this.getAllUsers();
       }
     )
+  }
+  onTableDataChange(event: any){
+    this.page = event;
+    this.getAllUsers()
   }
 }

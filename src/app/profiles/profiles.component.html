@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of userReviews">
+    <tr *ngFor="let user of userReviews| paginate:{itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
       <td><span>{{user.username}}</span></td>
       <td><span>{{user.fullName}}</span></td>
       <td><span>{{user.like}}</span></td>
@@ -26,6 +26,10 @@
       </td>
     </tr>
     </tbody>
+    <div>
+      <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+      </pagination-controls>
+    </div>
   </table>
 </body>
 </div>

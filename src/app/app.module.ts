@@ -14,6 +14,7 @@ import { TabsComponent  } from '../tabs/tabs.component'
 import { TabComponent  } from '../tabs/tab.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfilesComponent } from './profiles/profiles.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { ProfilesComponent } from './profiles/profiles.component';
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
