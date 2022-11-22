@@ -96,7 +96,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <div class="comment" *ngFor="let review of reviews| paginate:{id:'pagination3', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let k = index">
+      <div class="comment" *ngFor="let review of reviews| paginate:{id:'pagination3', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
         <div>
           <b>Username:</b><p>{{review.username}} </p>
         </div>

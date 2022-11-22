@@ -148,8 +148,9 @@ export class ProfileComponent implements OnInit {
       response => {
         this.borrowedBooks = response
       });
-      this.httpClient.get<number>('https://localhost:7165/api/borrowed/BooksSize?borrowerID='+this.OwnerID).subscribe(
+      this.httpClient.get<number>('https://localhost:7165/api/borrowed/BooksSize?id='+this.OwnerID).subscribe(
         response => {
+          console.log(response)
           this.borrowBooksCount = response
         });
   }
@@ -306,6 +307,7 @@ export class ProfileComponent implements OnInit {
             this.count = response
           });
     }
+
     onTableDataChange(event: any){
       this.page = event;
       this.getBookReviews(this.bookid)
