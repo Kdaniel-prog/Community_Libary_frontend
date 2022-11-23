@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfilesComponent } from './profiles/profiles.component';
+import { TokenStorageService } from './_services/token-storage.service';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,11 +15,13 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'profiles', component: ProfilesComponent, canActivate: [AuthGuard]},
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+}

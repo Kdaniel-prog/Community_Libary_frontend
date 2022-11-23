@@ -48,36 +48,39 @@
           </div>
         </body>
       </tab>
+
       <tab [name]="'Borrowed Books'">
-        <div class="books">
-          <table  class="table table-dark">
-            <thead>
-            <tr>
-              <th scope="col"><h5><b>Author</b></h5></th>
-              <th scope="col"><h5><b>Title</b></h5></th>
-              <th scope="col"><h5><b>Owner Username</b></h5></th>
-              <th scope="col"><h5><b>Borrowed Time</b></h5></th>
-              <th scope="col"><h5><b>Book Review</b></h5></th>
-              <th scope="col"><h5><b>Actions</b></h5></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let book of borrowedBooks| paginate:{id: 'pagination2', itemsPerPage: borrowBooksTableSize, currentPage: borrowBooksPage, totalItems: borrowBooksCount}; let i = index">
-              <td><span>{{book.author}}</span></td>
-              <td><span>{{book.title}}</span></td>
-              <td><span>{{book.ownerUsername}}</span></td>
-              <td><span>{{timeConverter(book.borrowedTime)}}</span></td>
-              <td><span>{{book.bookReview}}</span></td>
-              <td>
-                <button *ngIf="book.bookReview == null" class="btn btn-sm btn-primary" (click)="openBookReview(contentNewReview, book)">Write book review</button>
-                <button class="btn btn-sm btn-info" (click)="openEditBookReview(contentEditReview, book)">Edit book review</button>
-                <button *ngIf="book.bookReview != null"class="btn btn-sm btn-danger" (click)="DeleteBookReview(book.bookReviewID)">Delete book review</button>
-                <button class="btn btn-sm btn-danger" (click)="returnBorrowedBook(book.borrowedReviewID)" >Give Back</button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+        <body class="body">
+          <div class="books">
+            <table  class="table table-dark">
+              <thead>
+              <tr>
+                <th scope="col"><h5><b>Author</b></h5></th>
+                <th scope="col"><h5><b>Title</b></h5></th>
+                <th scope="col"><h5><b>Owner Username</b></h5></th>
+                <th scope="col"><h5><b>Borrowed Time</b></h5></th>
+                <th scope="col"><h5><b>Book Review</b></h5></th>
+                <th scope="col"><h5><b>Actions</b></h5></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let book of borrowedBooks| paginate:{id: 'pagination2', itemsPerPage: borrowBooksTableSize, currentPage: borrowBooksPage, totalItems: borrowBooksCount}; let i = index">
+                <td><span>{{book.author}}</span></td>
+                <td><span>{{book.title}}</span></td>
+                <td><span>{{book.ownerUsername}}</span></td>
+                <td><span>{{timeConverter(book.borrowedTime)}}</span></td>
+                <td><span>{{book.bookReview}}</span></td>
+                <td>
+                  <button *ngIf="book.bookReview == null" class="btn btn-sm btn-primary" (click)="openBookReview(contentNewReview, book)">Write book review</button>
+                  <button class="btn btn-sm btn-info" (click)="openEditBookReview(contentEditReview, book)">Edit book review</button>
+                  <button *ngIf="book.bookReview != null"class="btn btn-sm btn-danger" (click)="DeleteBookReview(book.bookReviewID)">Delete book review</button>
+                  <button class="btn btn-sm btn-danger" (click)="returnBorrowedBook(book.borrowedReviewID)" >Give Back</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </body>
         <div>
           <pagination-controls id="pagination2" previousLabel="Prev" nextLabel="Next" (pageChange)="onBorrowBooksTableDataChange($event)">
           </pagination-controls>

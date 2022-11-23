@@ -7,9 +7,9 @@ import { TabComponent  } from './tab.component';
   template: `
 
     <ul class="tabs">
-      <li *ngFor="let tab of tabs" (click)="activateTab(tab)" [class.active]="tab.active">
+      <button type="button" class="btn" *ngFor="let tab of tabs" (click)="activateTab(tab)" [class.active]="tab.active">
         <a>{{tab.name}}</a>
-      </li>
+      </button>
     </ul>
     <ng-content></ng-content>
   `,
@@ -18,23 +18,23 @@ import { TabComponent  } from './tab.component';
       margin: 0;
       padding: 0;
       overflow: hidden;
-      margin-bottom: -1px;
       height: 2.25em;
     }
 
-    li {
+    button {
       float: left;
       list-style: none;
       margin: 0;
-      padding: .25em .25em 0;
-      height: 2em;
       overflow: hidden;
       position: relative;
       z-index: 1;
       border-bottom: 1px solid #FFF;
+      background-color: white
     }
-
-    li.active {
+    button:hover, .dropdown:hover .dropbtn {
+      background-color: rgb(105, 64, 143);
+    }
+    button.active {
       z-index: 3;
     }
 
@@ -50,6 +50,8 @@ import { TabComponent  } from './tab.component';
       color: #000;
       font-weight: bold;
       text-decoration: none;
+      margin-bottom:10%;
+      background-color: white
     }
 
     .active a {

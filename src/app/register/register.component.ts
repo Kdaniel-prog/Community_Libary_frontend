@@ -18,6 +18,7 @@ export class RegisterComponent{
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+
   constructor(private authService: AuthService) { }
   onSubmit(): void {
     const { username, email, password, name } = this.form;

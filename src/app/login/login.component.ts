@@ -10,7 +10,7 @@ import { AppRoutingModule } from '../app-routing.module';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
   form: any = {
     username: null,
     password: null
@@ -21,12 +21,6 @@ export class LoginComponent implements OnInit {
   userNotExist = false;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
-
-  ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-    }
-  }
 
   onSubmit(): void {
     const { username, password } = this.form;

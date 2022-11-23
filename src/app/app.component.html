@@ -5,30 +5,31 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div [ngbCollapse]="isNavbarCollapsed" class="col collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-            <li class="nav-item">
-              <a class="col nav-link" href="/home" routerLink="home">
+        <div [ngbCollapse]="isNavbarCollapsed"  class="col collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-sm-0" >
+            <li class="nav-item justify-content-center" >
+              <a class="col nav-link"  href="/home" routerLink="home">
                 <b>Home</b>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="col nav-link" href="/profiles" routerLink="profiles">
+            <li class="nav-item justify-content-center">
+              <a class="col nav-link"  href="/profiles" routerLink="profiles">
                 <b>Profiles</b>
               </a>
             </li>
           </ul>
-        </div>
-        <li class="nav-item">
-          <a type="button" class="btn bi-door-open-fill" (click)="logout()">
+
+        <li class="nav-item justify-content-center">
+          <a class="col nav-link" href=""  (click)="logout()">
             <b>Logout</b>
           </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/profile" routerLink="profile" >
+        <li class="nav-item justify-content-center">
+            <a class="col nav-link" href="/profile" routerLink="profile" >
               <b>My profile</b>
             </a>
         </li>
+      </div>
       </nav>
       </div>
     <router-outlet></router-outlet>
