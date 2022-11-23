@@ -20,6 +20,7 @@ export class RegisterComponent{
   errorMessage = '';
 
   constructor(private authService: AuthService) { }
+
   onSubmit(): void {
     const { username, email, password, name } = this.form;
     this.authService.register(username, email, password, name).subscribe({
