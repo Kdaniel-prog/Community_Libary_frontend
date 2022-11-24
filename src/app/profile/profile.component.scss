@@ -1,0 +1,58 @@
+.body{
+  margin-top: 5%;
+  text-shadow: 2px 2px rgba(229, 228, 255, 0.034);
+  border-radius: 10px;
+  background-color: rgb(253, 251, 251);
+  padding-bottom: 1%;
+}
+.add{
+  float: right;
+}
+
+.setup-body{
+  margin-top: 5%;
+  text-shadow: 2px 2px rgba(229, 228, 255, 0.034);
+  border-radius: 10px;
+  background-color: rgba(253, 251, 251, 0);
+  width: fit-content;
+  block-size: fit-content;
+  margin-right: 3%;
+
+}
+
+.comment{
+  text-shadow: 2px 2px rgba(229, 228, 255, 0.034);
+  border-radius: 10px;
+  margin-bottom: 3%;
+}
+
+.cardprofil {
+  text-align: center;
+}
+
+.titleprofil {
+  color: grey;
+  font-size: 18px;
+}
+
+.button-profil {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  color: white;
+  background-color: rgb(24, 49, 129);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}

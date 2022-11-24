@@ -1,0 +1,32 @@
+
+
+.image{
+  height: 100vh;
+  background-size:cover;
+  width: 100%;
+  background:url('../assets/images/Background_design.jpg');
+  background-position:20% 50%;
+  position: absolute;
+}
+
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-radius: 10px;
+}
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(105, 64, 143);
+}
+.navbar button:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(105, 64, 143);
+}
+.nav-item{
+  display: flex;
+}
+
