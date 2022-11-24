@@ -6,17 +6,14 @@ import { TokenStorageService } from './token-storage.service';
 const AUTH_API = 'https://localhost:7165/api/auth/';
 const API = 'https://localhost:7165/api';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
-};
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-
-
-
+   httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.tokenService.getToken()}`,})
+  };
   constructor(private http: HttpClient, private readonly tokenService: TokenStorageService) { }
 
   get isLoggedIn(){
@@ -31,7 +28,7 @@ export class AuthService {
       bookID,
       reviewerID,
       bookReview
-    }, httpOptions);
+    }, this.httpOptions);
   }
 
 
@@ -40,14 +37,14 @@ export class AuthService {
       bookID,
       reviewerID,
       bookReview
-    }, httpOptions);
+    }, this.httpOptions);
   }
 
   add_borrowed(bookID: any, borrowerID: number): Observable<any> {
     return this.http.post(API + '/borrowed/addBorrowed', {
       bookID,
       borrowerID
-    }, httpOptions);
+    }, this.httpOptions);
   }
 
   add_book(Title: string, Author: string, OwnerID: number): Observable<any> {
@@ -55,14 +52,14 @@ export class AuthService {
       Title,
       Author,
       OwnerID
-    }, httpOptions);
+    }, this.httpOptions);
   }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
       username,
       password
-    }, httpOptions);
+    }, this.httpOptions);
   }
 
   register(username: string, Email: string, password: string, Fullname: String): Observable<any> {
@@ -71,6 +68,6 @@ export class AuthService {
       password,
       Email,
       Fullname
-    }, httpOptions);
+    }, this.httpOptions);
   }
 }

@@ -62,7 +62,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_data = this.tokenStorageService.getUser();
-    console.log(this.user_data.id);
     this.getBooks();
   }
 
