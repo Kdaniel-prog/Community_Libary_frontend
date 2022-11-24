@@ -148,7 +148,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getBorrowedBooks() {
-    this.httpClient.get<BorrowedBook[]>('https://localhost:7165/api/borrowed/Books?borrowerID='+this.OwnerID+'&page='+this.borrowBooksPage+'&size='+this.borrowBooksTableSize).subscribe(
+    this.httpClient.get<BorrowedBook[]>('https://localhost:7165/api/borrowed/Books?borrowerID='+this.OwnerID+'&page='+this.borrowBooksPage+'&size='+this.borrowBooksTableSize,this.httpOptions).subscribe(
       response => {
         this.borrowedBooks = response
       });
